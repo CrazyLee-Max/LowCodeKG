@@ -2,6 +2,7 @@ package org.example.lowcodekg;
 
 import org.apache.commons.io.FileUtils;
 import org.example.lowcodekg.service.KnowledgeExtractorService;
+import org.example.lowcodekg.service.TemplateService;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -38,6 +39,11 @@ public class LowCodeKgApplication {
                 KnowledgeExtractorService extractor = ctx.getBean(KnowledgeExtractorService.class);
                 extractor.execute(FileUtils.readFileToString(new File(option.configPath), "utf-8"));
                 System.exit(0);
+            } else if (!Objects.isNull(option.templatePath)) {
+                ApplicationContext ctx = SpringApplication.run(LowCodeKgApplication.class, args);
+                TemplateService templateService = ctx.getBean(TemplateService.class);
+                templateService.parseTemplateAndBuildGraph(option.templatePath);
+                System.exit(0);
             }
         } catch (CmdLineException cle) {
             System.out.println("Command line error: " + cle.getMessage());
@@ -61,4 +67,10 @@ class CmdOption {
      */
     @Option(name = "-exec", usage = "Run the web application in localhost", handler = ExplicitBooleanOptionHandler.class)
     public boolean exec = false;
+
+    /**
+     * parse template and build graph
+     */
+    @Option(name = "-template", usage = "Parse template files and build knowledge graph")
+    public String templatePath = null;
 }

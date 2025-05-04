@@ -1,0 +1,47 @@
+{
+  "name": "登录模版", // 模版名称
+  "identifier": "login_template", // 模版标识符
+  "appKind": "react_web_app", // 应用类型 // java_app/react_web_app/vue3_web_app/taro_app
+  "description": "", // 简介
+  "tags": ["登录模版", "登录表单"], // 模版标签
+  "creator": "zhangsan", // 创建者
+  "price": 100, // 价格，单位：分
+  "editorKind": "PageBuilder", // 模版类型 PageBuilder\ActionFlowDesigner\BizFlowDesigner
+  "elements": [
+    {
+      "elementUuid": "u_custom_container_U_56e352dccc9440ff84d6982c0096fbab_u",
+      "kind": "custom_container",
+      "dependUuids": [
+        "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u",
+        "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u"
+      ],
+      "granularity": "element",
+      "belongToFileUuid": "u_page_U_ee5a985d8b3f47aca3c1b4b81d3f800c_u",
+      "references": []
+    },
+    {
+      "elementUuid": "u_page_local_variable_U_edc4b82579414bc4b2b900d616bbcca3_u",
+      "kind": "page_local_variable",
+      "granularity": "element",
+      "dependUuids": [],
+      "belongToFileUuid": "u_page_U_ee5a985d8b3f47aca3c1b4b81d3f800c_u",
+      "references": []
+    },
+    {
+      "elementUuid": "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u",
+      "kind": "data_model",
+      "granularity": "file",
+      "dependUuids": [],
+      "belongToFileUuid": "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u",
+      "references": []
+    },
+    {
+      "elementUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+      "kind": "interact_action_flow",
+      "granularity": "file",
+      "dependUuids": [],
+      "belongToFileUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+      "references": []
+    }
+  ]
+}

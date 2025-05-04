@@ -1,0 +1,12 @@
+{
+  "name": "局部变量",
+  "kind": "page_local_variable",
+  "dataType": {
+    "type": "string"
+  },
+  "parentElementUuid": "u_page_U_ee5a985d8b3f47aca3c1b4b81d3f800c_u",
+  "elementUuid": "u_page_local_variable_U_edc4b82579414bc4b2b900d616bbcca3_u",
+  "identifier": "localVariableMbz",
+  "serial": 1,
+  "defaultValue": "标润体啊失望范围"
+}

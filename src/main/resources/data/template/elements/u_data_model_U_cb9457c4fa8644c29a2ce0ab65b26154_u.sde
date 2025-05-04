@@ -1,0 +1,29 @@
+ {
+    "parentElementUuid": "3573689D2B77477780317BAF5CB5FDC8",
+    "kind": "data_model",
+    "name": "登录模型",
+    "identifier": "loginModelDxx",
+    "elementUuid": "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u",
+    "fieldAspect": {
+      "fields": [
+        {
+          "kind": "data_model_field",
+          "parentElementUuid": "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u",
+          "name": "用户名",
+          "identifier": "userNameHov",
+          "dataType": { "type": "string" },
+          "elementUuid": "u_data_model_field_U_d25bdc6c76634154b3bb67e4db94a6af_u",
+          "serial": 1
+        },
+        {
+          "kind": "data_model_field",
+          "parentElementUuid": "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u",
+          "name": "密码",
+          "identifier": "passwordTtg",
+          "dataType": { "type": "string" },
+          "elementUuid": "u_data_model_field_U_09f7fc64a540498f836b227743c10220_u",
+          "serial": 2
+        }
+      ]
+    }
+  }

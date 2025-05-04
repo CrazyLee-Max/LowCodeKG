@@ -1,0 +1,188 @@
+ {
+      "elementUuid": "u_custom_container_U_56e352dccc9440ff84d6982c0096fbab_u",
+      "kind": "custom_container",
+      "name": "容器0eb7",
+      "tag": "div",
+      "type": "CustomComponent",
+      "attrs": {},
+      "isContainer": true,
+      "children": [
+        {
+          "elementUuid": "u_antd_form_U_2882a25b1fa5449c8d92505f505fab50_u",
+          "kind": "antd_form",
+          "name": "表单5cb2",
+          "tag": "Form",
+          "type": "antd",
+          "attrs": {
+            "size": {
+              "type": "component",
+              "value": "middle"
+            },
+            "layout": {
+              "type": "component",
+              "value": "horizontal"
+            },
+            "labelAlign": {
+              "type": "component",
+              "value": "right"
+            }
+          },
+          "isContainer": true,
+          "children": [
+            {
+              "elementUuid": "u_antd_form_item_U_3823381845944f168c432700bffe70c2_u",
+              "kind": "antd_form_item",
+              "name": "表单项b1b7",
+              "tag": "Form.Item",
+              "type": "antd",
+              "attrs": {
+                "label": {
+                  "type": "component",
+                  "value": "用户名"
+                },
+                "labelAlign": {
+                  "type": "component",
+                  "value": null
+                },
+                "name": {
+                  "type": "uuid_to_identifier",
+                  "value": [
+                    "u_data_model_field_U_d25bdc6c76634154b3bb67e4db94a6af_u"
+                  ]
+                }
+              },
+              "isContainer": true,
+              "children": [
+                {
+                  "elementUuid": "u_antd_input_U_c5fb7af568ec46669666d37541c6c256_u",
+                  "kind": "antd_input",
+                  "name": "用户名",
+                  "tag": "Input",
+                  "type": "antd",
+                  "attrs": {
+                    "size": {
+                      "type": "component",
+                      "value": "middle"
+                    },
+                    "maxLength": {
+                      "type": "component",
+                      "value": 200
+                    },
+                    "placeholder": {
+                      "type": "component",
+                      "value": "请输入"
+                    }
+                  },
+                  "isContainer": false,
+                  "children": [],
+                  "parentElementUuid": "u_antd_form_item_U_3823381845944f168c432700bffe70c2_u",
+                  "serial": 1,
+                  "style": {},
+                  "identifier": "userNameCat"
+                }
+              ],
+              "parentElementUuid": "u_antd_form_U_2882a25b1fa5449c8d92505f505fab50_u",
+              "serial": 1,
+              "style": {},
+              "identifier": "formItemB1B7Cxk"
+            },
+            {
+              "elementUuid": "u_antd_form_item_U_04cca571da6f4ffe92cf5eb0c911962a_u",
+              "kind": "antd_form_item",
+              "name": "密码",
+              "tag": "Form.Item",
+              "type": "antd",
+              "attrs": {
+                "label": {
+                  "type": "component",
+                  "value": "密码"
+                },
+                "labelAlign": {
+                  "type": "component",
+                  "value": null
+                },
+                "name": {
+                  "type": "uuid_to_identifier",
+                  "value": [
+                    "u_data_model_field_U_09f7fc64a540498f836b227743c10220_u"
+                  ]
+                }
+              },
+              "isContainer": true,
+              "children": [
+                {
+                  "elementUuid": "u_antd_input_password_U_088a0940bd0b47b3b5700be5c9a5e590_u",
+                  "kind": "antd_input_password",
+                  "name": "密码输入框e0bf",
+                  "tag": "Input.Password",
+                  "type": "antd",
+                  "attrs": {
+                    "size": {
+                      "type": "component",
+                      "value": "middle"
+                    },
+                    "value": {
+                      "type": "component",
+                      "value": ""
+                    },
+                    "maxLength": {
+                      "type": "component",
+                      "value": 20
+                    },
+                    "placeholder": {
+                      "type": "component",
+                      "value": "请输入"
+                    }
+                  },
+                  "isContainer": false,
+                  "children": [],
+                  "parentElementUuid": "u_antd_form_item_U_04cca571da6f4ffe92cf5eb0c911962a_u",
+                  "serial": 1,
+                  "style": {},
+                  "identifier": "passwordInputBoxE0BfOdn"
+                }
+              ],
+              "parentElementUuid": "u_antd_form_U_2882a25b1fa5449c8d92505f505fab50_u",
+              "serial": 2,
+              "style": {},
+              "identifier": "formItemB1B7Yrl"
+            }
+          ],
+          "parentElementUuid": "u_custom_container_U_56e352dccc9440ff84d6982c0096fbab_u",
+          "serial": 1,
+          "style": {},
+          "identifier": "form5Cb2Yzg",
+          "modelUuid": "u_data_model_U_cb9457c4fa8644c29a2ce0ab65b26154_u"
+        },
+        {
+          "elementUuid": "u_antd_button_U_957f3454dd014639acec643d97de7bf2_u",
+          "kind": "antd_button",
+          "name": "按钮bf9d",
+          "tag": "Button",
+          "type": "antd",
+          "attrs": {
+            "children": {
+              "type": "component",
+              "value": "登录"
+            }
+          },
+          "isContainer": false,
+          "children": [],
+          "parentElementUuid": "u_custom_container_U_56e352dccc9440ff84d6982c0096fbab_u",
+          "serial": 2,
+          "style": {},
+          "identifier": "buttonBf9DAza",
+          "interaction": [
+            {
+              "eventUuid": "u_event_U_AE4A6F1AB54343EDA3A6B64D5F7F5B30_u",
+              "actionFlowUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+              "uuid": "8f4525f6feb94853b76447efeec937df"
+            }
+          ]
+        }
+      ],
+      "parentElementUuid": "u_page_U_ee5a985d8b3f47aca3c1b4b81d3f800c_u",
+      "serial": 1,
+      "style": {},
+      "identifier": "container0Eb7Izu"
+    }

@@ -1,0 +1,75 @@
+{
+  "elementUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+  "name": "点击-按钮bf9d",
+  "parentElementUuid": "u_antd_button_U_957f3454dd014639acec643d97de7bf2_u",
+  "kind": "interact_action_flow",
+  "inputs": {
+    "params": [
+      {
+        "name": "event",
+        "kind": "input_param",
+        "parentElementUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+        "dataType": { "$ref": "#/definitions/Event" },
+        "serial": 0,
+        "elementUuid": "u_input_param_U_ade5b622f2b54f059f4e04edc6764e0c_u",
+        "identifier": "eventDmm"
+      }
+    ]
+  },
+  "identifier": "clickButtonBf9DOkp",
+  "children": [
+    {
+      "elementUuid": "u_act_get_component_fields_value_U_eb0b87667b9a4de3acee1f47addfbd9a_u",
+      "name": "获取表单组件全部数据",
+      "description": "",
+      "attrs": {
+        "formUuid": {
+          "type": "uuid_to_identifier",
+          "value": "u_antd_form_U_2882a25b1fa5449c8d92505f505fab50_u"
+        }
+      },
+      "parentElementUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+      "serial": 1,
+      "kind": "act_get_component_fields_value",
+      "children": [],
+      "identifier": "retrieveAllDataOfTheFormComponentRsq"
+    },
+    {
+      "elementUuid": "u_act_print_U_4726c67fe63741dfa36c617dd00c5a42_u",
+      "name": "打印",
+      "description": "",
+      "attrs": {
+        "content": {
+          "type": "simple_select",
+          "value": "打印内容",
+          "expression": "{{u_act_get_component_fields_value_U_eb0b87667b9a4de3acee1f47addfbd9a_u}}",
+          "expressionList": [
+            {
+              "elementType": "expression_variable",
+              "uuid": "u_act_get_component_fields_value_U_eb0b87667b9a4de3acee1f47addfbd9a_u",
+              "elementList": [
+                { "uuid": "current_scope" },
+                {
+                  "uuid": "u_act_get_component_fields_value_U_eb0b87667b9a4de3acee1f47addfbd9a_u"
+                }
+              ]
+            }
+          ],
+          "elementObj": {
+            "u_act_get_component_fields_value_U_eb0b87667b9a4de3acee1f47addfbd9a_u": [
+              { "uuid": "current_scope" },
+              {
+                "uuid": "u_act_get_component_fields_value_U_eb0b87667b9a4de3acee1f47addfbd9a_u"
+              }
+            ]
+          }
+        }
+      },
+      "parentElementUuid": "u_interact_action_flow_U_49521bef4a594ffbab859135d6ce3384_u",
+      "serial": 2,
+      "kind": "act_print",
+      "children": [],
+      "identifier": "printPax"
+    }
+  ]
+}

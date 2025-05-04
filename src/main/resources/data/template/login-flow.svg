@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="400" y="40" text-anchor="middle" font-size="24" font-weight="bold">登录功能流程图</text>
+  
+  <!-- 数据模型 -->
+  <rect x="50" y="100" width="200" height="100" fill="#e1f5fe" stroke="#333" rx="5"/>
+  <text x="150" y="130" text-anchor="middle" font-weight="bold">数据模型</text>
+  <text x="70" y="160">• 用户名字段</text>
+  <text x="70" y="180">• 密码字段</text>
+  
+  <!-- UI组件 -->
+  <rect x="300" y="100" width="200" height="140" fill="#f3e5f5" stroke="#333" rx="5"/>
+  <text x="400" y="130" text-anchor="middle" font-weight="bold">UI组件</text>
+  <text x="320" y="160">• Form表单</text>
+  <text x="320" y="180">• 用户名输入框</text>
+  <text x="320" y="200">• 密码输入框</text>
+  <text x="320" y="220">• 登录按钮</text>
+  
+  <!-- 交互流程 -->
+  <rect x="550" y="100" width="200" height="100" fill="#e8f5e9" stroke="#333" rx="5"/>
+  <text x="650" y="130" text-anchor="middle" font-weight="bold">交互流程</text>
+  <text x="570" y="160">1. 点击登录按钮</text>
+  <text x="570" y="180">2. 获取表单数据</text>
+  
+  <!-- 数据流转箭头 -->
+  <line x1="250" y1="150" x2="300" y2="150" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="500" y1="150" x2="550" y2="150" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 流程说明 -->
+  <rect x="50" y="300" width="700" height="200" fill="#fff3e0" stroke="#333" rx="5"/>
+  <text x="70" y="330" font-weight="bold">流程说明：</text>
+  <text x="70" y="360">1. 用户在表单中输入用户名和密码</text>
+  <text x="70" y="390">2. 点击登录按钮触发交互事件</text>
+  <text x="70" y="420">3. 系统获取表单中的所有数据</text>
+  <text x="70" y="450">4. 打印获取到的表单数据</text>
+</svg>
