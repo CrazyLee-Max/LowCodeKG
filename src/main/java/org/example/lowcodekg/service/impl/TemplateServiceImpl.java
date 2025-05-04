@@ -80,23 +80,27 @@ public class TemplateServiceImpl implements TemplateService {
                 String elementContent = FileUtils.readFileToString(elementFile, StandardCharsets.UTF_8);
                 JSONObject elementJson = JSON.parseObject(elementContent);
 
-                // 创建 element 节点
-                TemplateElementEntity elementEntity = new TemplateElementEntity();
-                elementEntity.setElementUuid(elementUuid);
-                elementEntity.setKind(element.getString("kind"));
-                elementEntity.setName(elementJson.getString("name"));
-                elementEntity.setTag(elementJson.getString("tag"));
-                elementEntity.setType(elementJson.getString("type"));
-                elementEntity.setGranularity(element.getString("granularity"));
-                elementEntity.setBelongToFileUuid(element.getString("belongToFileUuid"));
-                elementEntity.setContent(elementContent);
-                elementEntity = templateElementRepo.save(elementEntity);
+                // 检查节点是否已存在
+                TemplateElementEntity elementEntity = templateElementRepo.findByElementUuid(elementUuid);
+                if (elementEntity == null) {
+                    // 创建新的 element 节点
+                    elementEntity = new TemplateElementEntity();
+                    elementEntity.setElementUuid(elementUuid);
+                    elementEntity.setKind(element.getString("kind"));
+                    elementEntity.setName(elementJson.getString("name"));
+                    elementEntity.setTag(elementJson.getString("tag"));
+                    elementEntity.setType(elementJson.getString("type"));
+                    elementEntity.setGranularity(element.getString("granularity"));
+                    elementEntity.setBelongToFileUuid(element.getString("belongToFileUuid"));
+                    elementEntity.setContent(elementContent);
+                    elementEntity = templateElementRepo.save(elementEntity);
+                }
 
                 // 存储到 Map 中以便后续建立关系
                 elementEntityMap.put(elementUuid, elementEntity);
 
                 // 建立与模板的关系
-                templateRepo.createRelationOfContainedElement(templateEntity.getId(), elementEntity.getId());
+                templateRepo.createRelationOfContainedElement(templateEntity.getId(), elementUuid);
 
                 // 处理依赖关系
                 JSONArray dependUuids = element.getJSONArray("dependUuids");
@@ -105,8 +109,8 @@ public class TemplateServiceImpl implements TemplateService {
                         String dependUuid = dependUuids.getString(j);
                         if (elementEntityMap.containsKey(dependUuid)) {
                             templateElementRepo.createRelationOfDependency(
-                                    elementEntity.getId(),
-                                    elementEntityMap.get(dependUuid).getId()
+                                    elementUuid,
+                                    dependUuid
                             );
                         }
                     }

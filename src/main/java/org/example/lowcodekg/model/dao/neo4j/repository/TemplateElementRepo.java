@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TemplateElementRepo extends Neo4jRepository<TemplateElementEntity, Long> {
 
-    @Query("MATCH (s:TemplateElement) WHERE id(s)=$sid " +
-            "MATCH (e:TemplateElement) WHERE id(e)=$eid " +
-            "CREATE (s)-[:DEPEND_ON]->(e)")
-    void createRelationOfDependency(Long sid, Long eid);
+    @Query("MATCH (s:TemplateElement) WHERE s.elementUuid=$sourceUuid " +
+            "MATCH (e:TemplateElement) WHERE e.elementUuid=$targetUuid " +
+            "MERGE (s)-[:DEPEND_ON]->(e)")
+    void createRelationOfDependency(String sourceUuid, String targetUuid);
+
+    @Query("MATCH (e:TemplateElement) WHERE e.elementUuid=$elementUuid RETURN e")
+    TemplateElementEntity findByElementUuid(String elementUuid);
 }
