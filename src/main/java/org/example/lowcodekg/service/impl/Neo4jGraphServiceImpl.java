@@ -23,6 +23,39 @@ import java.util.*;
 @Service
 public class Neo4jGraphServiceImpl implements Neo4jGraphService {
 
+    @Override
+    public Neo4jSubGraph executeTemplateSearch(String cypher, List<String> templateNames) {
+        QueryRunner runner = neo4jClient.getQueryRunner();
+        Neo4jSubGraph subGraph = new Neo4jSubGraph();
+        Set<Long> addedNodeIds = new HashSet<>();
+
+        // 执行查询
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("names", templateNames);
+        Result result = runner.run(cypher, parameters);
+
+        // 处理结果
+        while (result.hasNext()) {
+            Record record = result.next();
+            
+            // 添加匹配的模板节点 a
+            Node templateA = record.get("a").asNode();
+            if (!addedNodeIds.contains(templateA.id())) {
+                subGraph.addNeo4jNode(getNodeDetail(templateA.id()));
+                addedNodeIds.add(templateA.id());
+            }
+
+            // 添加关联的模板节点 c
+            Node templateC = record.get("c").asNode();
+            if (!addedNodeIds.contains(templateC.id())) {
+                subGraph.addNeo4jNode(getNodeDetail(templateC.id()));
+                addedNodeIds.add(templateC.id());
+            }
+        }
+
+        return subGraph;
+    }
+
 //    @Autowired
 //    private Driver neo4jDriver;
 

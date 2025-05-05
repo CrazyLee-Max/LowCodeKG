@@ -2,7 +2,7 @@
   "name": "登录模版", // 模版名称
   "identifier": "login_template", // 模版标识符
   "appKind": "react_web_app", // 应用类型 // java_app/react_web_app/vue3_web_app/taro_app
-  "description": "", // 简介
+  "description": "这是一个登录模板，可以输入账号密码，然后点击登录账号", // 简介
   "tags": ["登录模版", "登录表单"], // 模版标签
   "creator": "zhangsan", // 创建者
   "price": 100, // 价格，单位：分

@@ -26,4 +26,7 @@ public interface Neo4jGraphService {
     CodeGenerationResult codeGeneration(String query, Neo4jSubGraph oriSubGraph, List<Long> remainNodeIds);
 
     Neo4jSubGraph searchFixedGraph(String query);
+    
+
+    Neo4jSubGraph executeTemplateSearch(String cypher, List<String> templateNames);
 }
