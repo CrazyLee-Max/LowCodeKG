@@ -8,6 +8,7 @@ import org.example.lowcodekg.model.dao.neo4j.entity.template.TemplateEntity;
 import org.example.lowcodekg.model.dao.neo4j.entity.template.TemplateElementEntity;
 import org.example.lowcodekg.model.dao.neo4j.repository.TemplateElementRepo;
 import org.example.lowcodekg.model.dao.neo4j.repository.TemplateRepo;
+import org.example.lowcodekg.service.LLMGenerateService;
 import org.example.lowcodekg.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,8 @@ public class TemplateServiceImpl implements TemplateService {
     @Autowired
     private TemplateElementRepo templateElementRepo;
 
-    private Map<String, TemplateElementEntity> elementEntityMap = new HashMap<>();
+    @Autowired
+    private LLMGenerateService llmGenerateService;
 
     @Override
     public void parseTemplateAndBuildGraph(String templatePath) {
@@ -54,14 +56,26 @@ public class TemplateServiceImpl implements TemplateService {
 
             // 创建模板根节点
             TemplateEntity templateEntity = new TemplateEntity();
-            templateEntity.setName(manifest.getString("name"));
+            String name = manifest.getString("name");
+            String appKind = manifest.getString("appKind");
+            String editorKind = manifest.getString("editorKind");
+            String tags = manifest.getJSONArray("tags").toJSONString();
+            String description = manifest.getString("description");
+
+            templateEntity.setName(name);
             templateEntity.setIdentifier(manifest.getString("identifier"));
-            templateEntity.setAppKind(manifest.getString("appKind"));
-            templateEntity.setDescription(manifest.getString("description"));
-            templateEntity.setTags(manifest.getJSONArray("tags").toJSONString());
+            templateEntity.setAppKind(appKind);
+            templateEntity.setTags(tags);
             templateEntity.setCreator(manifest.getString("creator"));
             templateEntity.setPrice(manifest.getInteger("price"));
-            templateEntity.setEditorKind(manifest.getString("editorKind"));
+            templateEntity.setEditorKind(editorKind);
+
+            // 如果描述为空，使用 LLM 生成描述
+            if (description == null || description.trim().isEmpty()) {
+                description = llmGenerateService.generateTemplateDescription(name, tags, appKind, editorKind);
+            }
+            templateEntity.setDescription(description);
+            
             templateEntity = templateRepo.save(templateEntity);
 
             // 解析 elements 数组
@@ -96,25 +110,8 @@ public class TemplateServiceImpl implements TemplateService {
                     elementEntity = templateElementRepo.save(elementEntity);
                 }
 
-                // 存储到 Map 中以便后续建立关系
-                elementEntityMap.put(elementUuid, elementEntity);
-
                 // 建立与模板的关系
                 templateRepo.createRelationOfContainedElement(templateEntity.getId(), elementUuid);
-
-                // 处理依赖关系
-                JSONArray dependUuids = element.getJSONArray("dependUuids");
-                if (dependUuids != null) {
-                    for (int j = 0; j < dependUuids.size(); j++) {
-                        String dependUuid = dependUuids.getString(j);
-                        if (elementEntityMap.containsKey(dependUuid)) {
-                            templateElementRepo.createRelationOfDependency(
-                                    elementUuid,
-                                    dependUuid
-                            );
-                        }
-                    }
-                }
             }
 
         } catch (IOException e) {

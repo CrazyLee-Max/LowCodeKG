@@ -268,4 +268,35 @@ public class LLMGenerateServiceImpl implements LLMGenerateService {
         return relevantFieldIdx;
     }
 
+    @Override
+    public String generateTemplateDescription(String name, String tags, String appKind, String editorKind) {
+        String template = """
+                你是一个低代码平台的模板描述生成器。现在需要你为一个模板生成一段简洁但信息丰富的描述文本。
+                
+                模板信息如下：
+                - 名称：{name}
+                - 标签：{tags}
+                - 应用类型：{appKind}
+                - 编辑器类型：{editorKind}
+                
+                请根据以上信息，生成一段描述文本，要求：
+                1. 描述文本应该简洁明了，突出模板的主要功能和用途
+                2. 结合标签和应用类型，说明模板适用的场景
+                3. 提及编辑器类型，说明开发方式
+                4. 描述长度控制在100-200字之间
+                5. 使用专业但易懂的语言
+                
+                【注意】：只需要输出描述文本，不要包含任何其他内容！
+                """;
+
+        Map<String, Object> argumentMap = new HashMap<>();
+        argumentMap.put("name", name);
+        argumentMap.put("tags", tags);
+        argumentMap.put("appKind", appKind);
+        argumentMap.put("editorKind", editorKind);
+
+        String prompt = StrUtil.format(template, argumentMap);
+        return generateAnswer(prompt);
+    }
+
 }

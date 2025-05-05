@@ -16,4 +16,6 @@ public interface LLMGenerateService {
     List<Integer> selectExtendNode(String query, List<Map<String, Object>> extendNodeProps);
 
     List<Integer> selectRelevantFields(String query, String className, List<Map<String, Object>> fieldsProps);
+
+    String generateTemplateDescription(String name, String tags, String appKind, String editorKind);
 }
