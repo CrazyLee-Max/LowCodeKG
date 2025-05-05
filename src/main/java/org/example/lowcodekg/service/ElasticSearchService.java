@@ -111,4 +111,21 @@ public class ElasticSearchService {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 存储模板描述的嵌入向量
+     * @param name 模板名称
+     * @param description 模板描述
+     */
+    public void storeTemplateEmbedding(String name, String description) {
+        if (StringUtils.isNotEmpty(description)) {
+            TextSegment descriptionSegment = TextSegment.from(description);
+            TextSegment nameSegment = TextSegment.from(name);
+            Embedding embedding = embeddingModel.embed(descriptionSegment).content();
+
+            embeddingStore.add(embedding, nameSegment);
+        } else {
+            System.out.println(name + " description is null or empty");
+        }
+    }
 }

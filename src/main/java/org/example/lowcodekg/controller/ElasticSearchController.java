@@ -40,4 +40,10 @@ public class ElasticSearchController {
     public List<String> searchEmbedding(@RequestParam String query) throws IOException {
         return elasticsearchService.searchEmbedding(query);
     }
+
+    // 存储模板描述的嵌入数据
+    @PostMapping("/store-template-embedding")
+    public void storeTemplateEmbedding(@RequestParam String name, @RequestParam String description) throws IOException {
+        elasticsearchService.storeTemplateEmbedding(name, description);
+    }
 }

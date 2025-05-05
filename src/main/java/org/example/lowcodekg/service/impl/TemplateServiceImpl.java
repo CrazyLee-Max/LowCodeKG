@@ -9,6 +9,7 @@ import org.example.lowcodekg.model.dao.neo4j.entity.template.TemplateElementEnti
 import org.example.lowcodekg.model.dao.neo4j.repository.TemplateElementRepo;
 import org.example.lowcodekg.model.dao.neo4j.repository.TemplateRepo;
 import org.example.lowcodekg.service.LLMGenerateService;
+import org.example.lowcodekg.service.ElasticSearchService;
 import org.example.lowcodekg.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Autowired
     private LLMGenerateService llmGenerateService;
+
+    @Autowired
+    private ElasticSearchService elasticSearchService;
 
     @Override
     public void parseTemplateAndBuildGraph(String templatePath) {
@@ -77,6 +81,9 @@ public class TemplateServiceImpl implements TemplateService {
             templateEntity.setDescription(description);
             
             templateEntity = templateRepo.save(templateEntity);
+            
+            // 将模板描述存储到 Elasticsearch 中
+            elasticSearchService.storeTemplateEmbedding(name, description);
 
             // 解析 elements 数组
             JSONArray elements = manifest.getJSONArray("elements");
