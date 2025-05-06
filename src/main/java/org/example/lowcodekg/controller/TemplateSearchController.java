@@ -26,17 +26,31 @@ public class TemplateSearchController {
      */
     @GetMapping("/by-description")
     public Neo4jSubGraph searchTemplateByDescription(@RequestParam String query) throws IOException {
-        // 1. 在 ES 中搜索匹配的模板名称
-        List<String> matchedTemplateNames = elasticSearchService.searchEmbedding(query);
-        
-        // 2. 构建 Cypher 查询，查找匹配的根节点以及与其通过 contain 关系相关的根节点
-        String cypher = """
-            MATCH (a:Template)-[:contain]->(b)<-[:contain]-(c:Template)
-            WHERE a.name IN $names
-            RETURN DISTINCT a, c
-            """;
+        try {
+            System.out.println("收到的查询语句: " + query); // 添加日志
+            // 1. 在 ES 中搜索匹配的模板名称
+            List<String> matchedTemplateNames = elasticSearchService.searchEmbedding(query);
+            System.out.println("ES搜索结果: " + matchedTemplateNames); // 添加日志
             
-        // 3. 执行查询并返回结果
-        return neo4jGraphService.executeTemplateSearch(cypher, matchedTemplateNames);
+            if(matchedTemplateNames.isEmpty()){
+                return new Neo4jSubGraph();
+            }
+            // 2. 构建 Cypher 查询
+            String cypher = """
+                MATCH (a:Template)
+                WHERE a.name IN $names
+                WITH a
+                OPTIONAL MATCH (a)-[:CONTAIN]->(b:TemplateElement)<-[:CONTAIN]-(c:Template)
+                WITH a, c
+                WHERE c IS NULL OR a.name <> c.name
+                RETURN DISTINCT a, c
+                """;
+                
+            // 3. 执行查询并返回结果
+            return neo4jGraphService.executeTemplateSearch(cypher, matchedTemplateNames);
+        } catch (Exception e) {
+            e.printStackTrace(); // 打印详细错误信息
+            throw e;
+        }
     }
 }

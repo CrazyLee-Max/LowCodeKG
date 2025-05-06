@@ -65,7 +65,6 @@ public class TemplateServiceImpl implements TemplateService {
             String editorKind = manifest.getString("editorKind");
             String tags = manifest.getJSONArray("tags").toJSONString();
             String description = manifest.getString("description");
-
             templateEntity.setName(name);
             templateEntity.setIdentifier(manifest.getString("identifier"));
             templateEntity.setAppKind(appKind);
@@ -79,11 +78,17 @@ public class TemplateServiceImpl implements TemplateService {
                 description = llmGenerateService.generateTemplateDescription(name, tags, appKind, editorKind);
             }
             templateEntity.setDescription(description);
+
+            // 将 elements 数组转换为字符串存储
+            JSONArray elementsFile = manifest.getJSONArray("elements");
+            String elementsStr = elementsFile.toJSONString();
+            templateEntity.setElementsStr(elementsStr);
             
             templateEntity = templateRepo.save(templateEntity);
             
             // 将模板描述存储到 Elasticsearch 中
             elasticSearchService.storeTemplateEmbedding(name, description);
+
 
             // 解析 elements 数组
             JSONArray elements = manifest.getJSONArray("elements");

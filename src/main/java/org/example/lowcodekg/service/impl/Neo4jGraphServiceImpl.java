@@ -27,7 +27,8 @@ public class Neo4jGraphServiceImpl implements Neo4jGraphService {
     public Neo4jSubGraph executeTemplateSearch(String cypher, List<String> templateNames) {
         QueryRunner runner = neo4jClient.getQueryRunner();
         Neo4jSubGraph subGraph = new Neo4jSubGraph();
-        Set<Long> addedNodeIds = new HashSet<>();
+        Set<Long> initialNodeIds = new HashSet<>(); // 存储初始匹配的节点ID
+        Set<Long> expandedNodeIds = new HashSet<>(); // 存储扩充的节点ID
 
         // 执行查询
         Map<String, Object> parameters = new HashMap<>();
@@ -40,16 +41,22 @@ public class Neo4jGraphServiceImpl implements Neo4jGraphService {
             
             // 添加匹配的模板节点 a
             Node templateA = record.get("a").asNode();
-            if (!addedNodeIds.contains(templateA.id())) {
+            if (!initialNodeIds.contains(templateA.id()) && !expandedNodeIds.contains(templateA.id())) {
                 subGraph.addNeo4jNode(getNodeDetail(templateA.id()));
-                addedNodeIds.add(templateA.id());
+                initialNodeIds.add(templateA.id());
+                System.out.println("添加了初始匹配节点: " + templateA.id());
             }
-
-            // 添加关联的模板节点 c
-            Node templateC = record.get("c").asNode();
-            if (!addedNodeIds.contains(templateC.id())) {
-                subGraph.addNeo4jNode(getNodeDetail(templateC.id()));
-                addedNodeIds.add(templateC.id());
+            
+            // 添加关联的模板节点 c（如果存在）
+            Value cValue = record.get("c");
+            if (cValue != null && !cValue.isNull()) {
+                Node templateC = cValue.asNode();
+                // 如果节点 c 不在初始匹配列表中，才作为扩充节点添加
+                if (!initialNodeIds.contains(templateC.id()) && !expandedNodeIds.contains(templateC.id())) {
+                    subGraph.addNeo4jNode(getNodeDetail(templateC.id()));
+                    expandedNodeIds.add(templateC.id());
+                    System.out.println("添加了扩充节点: " + templateC.id());
+                }
             }
         }
 

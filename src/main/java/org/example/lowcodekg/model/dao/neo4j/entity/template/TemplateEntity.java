@@ -42,6 +42,9 @@ public class TemplateEntity {
     @Property("editorKind")
     private String editorKind;
 
+    @Property("elementsStr")
+    private String elementsStr;
+
     @Relationship(type = "CONTAIN", direction = Relationship.Direction.OUTGOING)
     private List<TemplateElementEntity> elements = new ArrayList<>();
 }
