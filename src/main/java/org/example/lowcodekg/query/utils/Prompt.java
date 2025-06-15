@@ -518,4 +518,18 @@ public interface Prompt {
               **Filtering criteria:** 
                  - Exclude resources with no clear relevance to the subtask description. 
             """;
+    /*
+     * 筛选es检索结果
+     */
+
+    public static final String Choose_Relevant_Templates = """
+                你是一名程序员，你要实现的功能是【{query}】。
+            现在我给你一组描述，每行格式为"序号. 描述内容"：
+            {descriptions}
+            
+            请判断每个描述是否与【{query}】功能相关或者对实现【{query}】功能有帮助。
+            【注意】：你只能输出一个数组，数组中包含相关描述的序号！
+            【注意】：输出格式示例：[0, 2, 4]，表示序号为0、2、4的描述与功能相关。
+            【注意】：请勿输出任何解释性文字，务必遵守输出格式！
+            """;
 }

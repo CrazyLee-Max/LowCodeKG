@@ -1,5 +1,6 @@
 package org.example.lowcodekg.query.service.util.retriever;
 
+import org.example.lowcodekg.model.dao.es.document.Document;
 import org.example.lowcodekg.model.dao.neo4j.entity.template.TemplateEntity;
 import org.example.lowcodekg.model.dto.Neo4jNode;
 import org.example.lowcodekg.model.result.Result;
@@ -31,4 +32,6 @@ public interface TemplateRetrieve {
 
 
     Result<List<TemplateEntity>> queryByNL(String query);
+
+    List<Document> chooseRelevantTemplates(String query, List<Document> documents);
 }

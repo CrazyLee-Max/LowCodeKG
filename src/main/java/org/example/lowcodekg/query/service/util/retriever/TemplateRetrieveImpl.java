@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.example.lowcodekg.query.utils.Constants.*;
+import static org.example.lowcodekg.query.utils.Prompt.Choose_Relevant_Templates;
 
 /**
  * @Description
@@ -61,8 +62,8 @@ public class TemplateRetrieveImpl implements TemplateRetrieve {
 //            documents.stream().forEach(document -> {
 //                System.out.println(document);
 //            });
-
-            templates = documents.stream()
+            List<Document> filteredDocuments = chooseRelevantTemplates(query, documents);
+            templates = filteredDocuments.stream()
                     .map(FormatUtil::convertToTemplateNode)
                     .collect(Collectors.toList());
 
@@ -180,5 +181,25 @@ public class TemplateRetrieveImpl implements TemplateRetrieve {
             System.err.println("Error in queryPageEntitiesByTask: " + e.getMessage());
         }
         return pageEntities;
+    }
+    public List<Document> chooseRelevantTemplates(String query, List<Document> documents) {
+        StringBuilder descriptions = new StringBuilder();
+        for (int i = 0; i < documents.size(); i++) {
+            descriptions.append(i).append(". ").append(documents.get(i).getDescription()).append("\n");
+        }
+        String prompt = Choose_Relevant_Templates.replace("{query}", query).replace("descriptions", descriptions.toString());
+        String result = llmService.chat("deepseek", prompt);
+        result = result.trim().replace("[", "").replace("]", "");
+        List<Document> filteredDocs = new ArrayList<>();
+        if (!result.isEmpty()) {
+            String[] indices = result.split(",");
+            for (String index : indices) {
+                int idx = Integer.parseInt(index.trim());
+                if (idx >= 0 && idx < documents.size()) {
+                    filteredDocs.add(documents.get(idx));
+                }
+            }
+        }
+        return filteredDocs;
     }
 }
