@@ -1,0 +1,355 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "工作流定义Schema",
+  "description": "定义工作流的JSON Schema",
+  "required": ["parentElementUuid", "kind", "name", "identifier", "elementUuid"],
+  "properties": {
+    "parentElementUuid": {
+      "type": "string",
+      "description": "父元素UUID"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["biz_flow"],
+      "description": "工作流类型"
+    },
+    "name": {
+      "type": "string",
+      "description": "工作流名称"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "工作流标识符"
+    },
+    "elementUuid": {
+      "type": "string",
+      "description": "元素UUID"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "kind", "dataType", "parentElementUuid", "elementUuid", "identifier", "serial"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "参数名称"
+              },
+              "kind": {
+                "type": "string",
+                "enum": ["input_param"],
+                "description": "参数类型"
+              },
+              "dataType": {
+                "type": "object",
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["string", "integer", "array"],
+                    "description": "数据类型"
+                  },
+                  "items": {
+                    "type": "object",
+                    "description": "数组元素类型（当type为array时必需）"
+                  },
+                  "uuid": {
+                    "type": "string",
+                    "description": "数据类型UUID"
+                  }
+                }
+              },
+              "parentElementUuid": {
+                "type": "string",
+                "description": "父元素UUID"
+              },
+              "elementUuid": {
+                "type": "string",
+                "description": "元素UUID"
+              },
+              "identifier": {
+                "type": "string",
+                "description": "参数标识符"
+              },
+              "serial": {
+                "type": "integer",
+                "description": "参数序号"
+              }
+            }
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "kind", "dataType", "parentElementUuid", "elementUuid", "identifier", "serial"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "输出参数名称"
+              },
+              "kind": {
+                "type": "string",
+                "enum": ["output_param"],
+                "description": "输出参数类型"
+              },
+              "dataType": {
+                "type": "object",
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "数据类型"
+                  },
+                  "items": {
+                    "type": "object",
+                    "description": "数组元素类型（当type为array时必需）"
+                  },
+                  "uuid": {
+                    "type": "string",
+                    "description": "类型UUID"
+                  }
+                }
+              },
+              "parentElementUuid": {
+                "type": "string"
+              },
+              "elementUuid": {
+                "type": "string"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "serial": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "localVariables": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "kind", "dataType", "parentElementUuid", "elementUuid", "identifier", "serial"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "本地变量名称"
+              },
+              "kind": {
+                "type": "string",
+                "enum": ["local_variable"],
+                "description": "本地变量类型"
+              },
+              "dataType": {
+                "type": "object",
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "description": "数据类型"
+                  },
+                  "refUuid": {
+                    "type": "string",
+                    "description": "引用类型UUID"
+                  },
+                  "uuid": {
+                    "type": "string",
+                    "description": "类型UUID"
+                  }
+                }
+              },
+              "parentElementUuid": {
+                "type": "string"
+              },
+              "elementUuid": {
+                "type": "string"
+              },
+              "identifier": {
+                "type": "string"
+              },
+              "serial": {
+                "type": "integer"
+              },
+              "defaultValue": {
+                "type": "object",
+                "description": "默认值"
+              }
+            }
+          }
+        }
+      }
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["elementUuid", "name", "kind", "children", "identifier"],
+        "properties": {
+          "elementUuid": {
+            "type": "string",
+            "description": "元素UUID"
+          },
+          "name": {
+            "type": "string",
+            "description": "节点名称"
+          },
+          "description": {
+            "type": "string",
+            "description": "节点描述"
+          },
+          "attrs": {
+            "type": "object",
+            "description": "节点属性",
+            "properties": {
+              "params": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "assignmentUuid": {
+                      "type": "string",
+                      "description": "赋值操作UUID"
+                    },
+                    "field": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": ["null", "string"]
+                        },
+                        "elementList": {
+                          "type": "array"
+                        },
+                        "expression": {
+                          "type": "string"
+                        },
+                        "expressionList": {
+                          "type": "array"
+                        },
+                        "elementObj": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "value": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": ["null", "string"]
+                        },
+                        "elementList": {
+                          "type": "array"
+                        },
+                        "expression": {
+                          "type": "string"
+                        },
+                        "expressionList": {
+                          "type": "array"
+                        },
+                        "elementObj": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "or": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "left": {
+                            "type": "object"
+                          },
+                          "right": {
+                            "type": "object"
+                          },
+                          "condition": {
+                            "type": "object"
+                          },
+                          "customUuid": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "content": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "elementList": {
+                    "type": "array"
+                  },
+                  "expression": {
+                    "type": "string"
+                  },
+                  "expressionList": {
+                    "type": "array"
+                  },
+                  "elementObj": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "parentElementUuid": {
+            "type": "string",
+            "description": "父元素UUID"
+          },
+          "serial": {
+            "type": "integer",
+            "description": "序号"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["act_assignment", "act_judge", "act_condition", "act_else", "act_for_each", "biz_call_biz_flow"],
+            "description": "节点类型"
+          },
+          "children": {
+            "type": "array",
+            "description": "子节点",
+            "items": {
+              "$ref": "#/properties/children/items"
+            }
+          },
+          "identifier": {
+            "type": "string",
+            "description": "节点标识符"
+          }
+        }
+      }
+    }
+  }
+}

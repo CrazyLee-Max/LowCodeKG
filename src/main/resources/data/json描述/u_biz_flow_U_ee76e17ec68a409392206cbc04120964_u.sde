@@ -1,0 +1,228 @@
+{
+  "parentElementUuid": "u_biz_service_U_587ad27afd0a421f81ee845b1af5595f_u",
+  "kind": "biz_flow",
+  "name": "处理数组",
+  "identifier": "processingArraysVqe",
+  "elementUuid": "u_biz_flow_U_ee76e17ec68a409392206cbc04120964_u",
+  "inputs": {
+    "params": [
+      {
+        "name": "设备状态列表",
+        "kind": "input_param",
+        "dataType": {
+          "type": "array",
+          "items": {
+            "type": "data_model",
+            "refUuid": "u_data_model_U_4b68de52d8744a5a84c0885cc21fdc25_u",
+            "uuid": "c30ef4ddb4a547b998cede9325f826c3"
+          },
+          "uuid": "8e0e845238ef4169a13d6f111aa990f8"
+        },
+        "parentElementUuid": "u_biz_flow_U_ee76e17ec68a409392206cbc04120964_u",
+        "elementUuid": "u_input_param_U_a709edc44dc54e2a82c1558012b783c7_u",
+        "identifier": "inputParameterGav",
+        "serial": 1
+      }
+    ]
+  },
+  "children": [
+    {
+      "elementUuid": "u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u",
+      "name": "for循环",
+      "description": "",
+      "attrs": {
+        "content": {
+          "type": "simple_select",
+          "elementList": [],
+          "expression": "{{u_input_param_U_a709edc44dc54e2a82c1558012b783c7_u}}",
+          "expressionList": [
+            {
+              "elementType": "expression_variable",
+              "uuid": "u_input_param_U_a709edc44dc54e2a82c1558012b783c7_u",
+              "elementList": [
+                {
+                  "uuid": "current_scope"
+                },
+                {
+                  "uuid": "u_input_param_U_a709edc44dc54e2a82c1558012b783c7_u"
+                }
+              ]
+            }
+          ],
+          "elementObj": {
+            "u_input_param_U_a709edc44dc54e2a82c1558012b783c7_u": [
+              {
+                "uuid": "current_scope"
+              },
+              {
+                "uuid": "u_input_param_U_a709edc44dc54e2a82c1558012b783c7_u"
+              }
+            ]
+          }
+        }
+      },
+      "parentElementUuid": "u_biz_flow_U_ee76e17ec68a409392206cbc04120964_u",
+      "serial": 1,
+      "kind": "act_for_each",
+      "children": [
+        {
+          "elementUuid": "u_act_assignment_U_2501aa07cdfa47f6a1eddfe0c9c29e55_u",
+          "name": "赋值",
+          "description": "",
+          "attrs": {
+            "params": [
+              {
+                "assignmentUuid": "9f203731fa984e598133351786d7d369",
+                "field": {
+                  "type": "simple_select",
+                  "value": null,
+                  "elementList": [],
+                  "expression": "{{u_output_param_U_987df5575de847958214d6d3c5ac9217_u}}",
+                  "expressionList": [
+                    {
+                      "elementType": "expression_variable",
+                      "uuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u",
+                      "elementList": [
+                        {
+                          "uuid": "current_scope"
+                        },
+                        {
+                          "uuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u"
+                        }
+                      ]
+                    }
+                  ],
+                  "elementObj": {
+                    "u_output_param_U_987df5575de847958214d6d3c5ac9217_u": [
+                      {
+                        "uuid": "current_scope"
+                      },
+                      {
+                        "uuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u"
+                      }
+                    ]
+                  }
+                },
+                "value": {
+                  "type": "simple_select",
+                  "value": null,
+                  "elementList": [],
+                  "expression": "{{u_method_U_3fdbb16307b0486298fd473680fdc997_u}}({{u_output_param_U_987df5575de847958214d6d3c5ac9217_u}},[{{u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item}}])",
+                  "expressionList": [
+                    {
+                      "elementType": "expression_variable",
+                      "uuid": "u_method_U_3fdbb16307b0486298fd473680fdc997_u",
+                      "elementList": [
+                        {
+                          "uuid": "4fd2c92679c64e4daa01f5efccb3c636"
+                        },
+                        {
+                          "uuid": "u_method_U_3fdbb16307b0486298fd473680fdc997_u"
+                        }
+                      ]
+                    },
+                    {
+                      "elementType": "string_literal",
+                      "value": ""
+                    },
+                    {
+                      "elementType": "expression_variable",
+                      "uuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u",
+                      "elementList": [
+                        {
+                          "uuid": "current_scope"
+                        },
+                        {
+                          "uuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u"
+                        }
+                      ]
+                    },
+                    {
+                      "elementType": "string_literal",
+                      "value": ","
+                    },
+                    {
+                      "elementType": "expression_variable",
+                      "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item",
+                      "elementList": [
+                        {
+                          "uuid": "current_scope"
+                        },
+                        {
+                          "uuid": "u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item"
+                        },
+                        {
+                          "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item"
+                        }
+                      ]
+                    },
+                    {
+                      "elementType": "string_literal",
+                      "value": "])"
+                    }
+                  ],
+                  "elementObj": {
+                    "u_method_U_3fdbb16307b0486298fd473680fdc997_u": [
+                      {
+                        "uuid": "4fd2c92679c64e4daa01f5efccb3c636"
+                      },
+                      {
+                        "uuid": "u_method_U_3fdbb16307b0486298fd473680fdc997_u"
+                      }
+                    ],
+                    "u_output_param_U_987df5575de847958214d6d3c5ac9217_u": [
+                      {
+                        "uuid": "current_scope"
+                      },
+                      {
+                        "uuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u"
+                      }
+                    ],
+                    "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item": [
+                      {
+                        "uuid": "current_scope"
+                      },
+                      {
+                        "uuid": "u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item"
+                      },
+                      {
+                        "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u$Item"
+                      }
+                    ]
+                  }
+                },
+                "elementUuid": "u_act_assignment_U_2501aa07cdfa47f6a1eddfe0c9c29e55_u"
+              }
+            ]
+          },
+          "parentElementUuid": "u_act_for_each_U_da75714ee39b4a11bf0ed49c3e4ea116_u",
+          "serial": 1,
+          "kind": "act_assignment",
+          "children": [],
+          "identifier": "assignmentDgj"
+        }
+      ],
+      "identifier": "forLoopEty"
+    }
+  ],
+  "outputs": {
+    "params": [
+      {
+        "name": "输出参数",
+        "kind": "output_param",
+        "dataType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "uuid": "29fc8e1582f34c27b2ca558b4fee9a1f"
+          },
+          "uuid": "3860649283a7467d834cfc80c1dca20e"
+        },
+        "parentElementUuid": "u_biz_flow_U_ee76e17ec68a409392206cbc04120964_u",
+        "elementUuid": "u_output_param_U_987df5575de847958214d6d3c5ac9217_u",
+        "identifier": "outputParametersMaq",
+        "serial": 1
+      }
+    ]
+  }
+}

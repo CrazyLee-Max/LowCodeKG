@@ -1,3 +1,5 @@
+package org.example.lowcodekg.query.service.classification;
+
 //package org.example.lowcodekg.query.service.classification;
 //
 //import org.example.lowcodekg.query.model.TextClassificationData;

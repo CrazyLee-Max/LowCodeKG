@@ -1,0 +1,481 @@
+{
+  "parentElementUuid": "u_biz_service_U_587ad27afd0a421f81ee845b1af5595f_u",
+  "kind": "biz_flow",
+  "name": "组装设备开关状态",
+  "identifier": "assemblyEquipmentSwitchStatusWug",
+  "elementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+  "inputs": {
+    "params": [
+      {
+        "name": "1号阀",
+        "kind": "input_param",
+        "dataType": {
+          "type": "string"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_input_param_U_fc5792d4445d4ef38768dc049e2626fc_u",
+        "identifier": "valveNo1Xbl",
+        "serial": 1
+      },
+      {
+        "name": "2号阀",
+        "kind": "input_param",
+        "dataType": {
+          "type": "string"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_input_param_U_5b6a938fac2149c8b5c720b812a3ac9f_u",
+        "identifier": "valveNo1Cca",
+        "serial": 2
+      },
+      {
+        "name": "3号阀",
+        "kind": "input_param",
+        "dataType": {
+          "type": "string"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_input_param_U_c8c64a29aa984f34bc6cd8fd8605579e_u",
+        "identifier": "valveNo2Dcd",
+        "serial": 3
+      },
+      {
+        "name": "4号阀",
+        "kind": "input_param",
+        "dataType": {
+          "type": "string"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_input_param_U_08b8351010204e87980f0ecce21b1ac4_u",
+        "identifier": "valveNo3Vhs",
+        "serial": 4
+      }
+    ]
+  },
+  "outputs": {
+    "params": [
+      {
+        "name": "设备状态列表",
+        "kind": "output_param",
+        "dataType": {
+          "type": "array",
+          "items": {
+            "type": "data_model",
+            "refUuid": "u_data_model_U_4b68de52d8744a5a84c0885cc21fdc25_u",
+            "uuid": "3ebd129f706941409fd4069ecc7786c3"
+          },
+          "uuid": "426f3c2b469c471c81acf6169b3bad03"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_output_param_U_b9e471ed0e0341698e2eb7cd5104c54d_u",
+        "identifier": "outputParametersFff",
+        "serial": 1
+      }
+    ]
+  },
+  "localVariables": {
+    "params": [
+      {
+        "name": "单个状态",
+        "kind": "local_variable",
+        "dataType": {
+          "type": "data_model",
+          "refUuid": "u_data_model_U_4b68de52d8744a5a84c0885cc21fdc25_u",
+          "uuid": "a0f415110a514c43b9bdf25496dc570a"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u",
+        "identifier": "singleStateFui",
+        "serial": 1,
+        "defaultValue": {}
+      },
+      {
+        "name": "设备状态列表",
+        "kind": "local_variable",
+        "dataType": {
+          "type": "array",
+          "items": {
+            "type": "data_model",
+            "refUuid": "u_data_model_U_4b68de52d8744a5a84c0885cc21fdc25_u",
+            "uuid": "7fe80268fe0a4f589d9a553a62cdade8"
+          },
+          "uuid": "d55b59538fe04217834aa4f9db275aa0"
+        },
+        "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+        "elementUuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u",
+        "identifier": "localVariableUdu",
+        "serial": 2
+      }
+    ]
+  },
+  "children": [
+    {
+      "elementUuid": "u_act_assignment_U_d20425c2f36746adaa332cf00d720032_u",
+      "name": "组装1号阀状态",
+      "description": "",
+      "attrs": {
+        "params": [
+          {
+            "assignmentUuid": "627999e51a0c4969bf4f003dbd390203",
+            "field": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_data_model_field_U_e00631ba1c4c4b3c98232cb0ce24c8db_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_data_model_field_U_e00631ba1c4c4b3c98232cb0ce24c8db_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    },
+                    {
+                      "uuid": "u_data_model_field_U_e00631ba1c4c4b3c98232cb0ce24c8db_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_data_model_field_U_e00631ba1c4c4b3c98232cb0ce24c8db_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  },
+                  {
+                    "uuid": "u_data_model_field_U_e00631ba1c4c4b3c98232cb0ce24c8db_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  }
+                ]
+              }
+            },
+            "value": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_constant_U_99ea8da48d6e4233878f51b418262523_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_constant_U_99ea8da48d6e4233878f51b418262523_u",
+                  "elementList": [
+                    {
+                      "uuid": "constant_group"
+                    },
+                    {
+                      "uuid": "u_constant_U_99ea8da48d6e4233878f51b418262523_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_constant_U_99ea8da48d6e4233878f51b418262523_u": [
+                  {
+                    "uuid": "constant_group"
+                  },
+                  {
+                    "uuid": "u_constant_U_99ea8da48d6e4233878f51b418262523_u"
+                  }
+                ]
+              }
+            },
+            "elementUuid": "u_act_assignment_U_d20425c2f36746adaa332cf00d720032_u"
+          },
+          {
+            "assignmentUuid": "b44d7000b7db490286ac9e90af622678",
+            "field": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    },
+                    {
+                      "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  },
+                  {
+                    "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  }
+                ]
+              }
+            },
+            "value": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    },
+                    {
+                      "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  },
+                  {
+                    "uuid": "u_data_model_field_U_e6e610e7185349b1a9e6f5f35ba615d5_u#u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  }
+                ]
+              }
+            },
+            "elementUuid": "u_act_assignment_U_d20425c2f36746adaa332cf00d720032_u"
+          }
+        ]
+      },
+      "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+      "serial": 1,
+      "kind": "act_assignment",
+      "children": [],
+      "identifier": "assignmentWed"
+    },
+    {
+      "elementUuid": "u_act_assignment_U_9fdbf3f263b44429a48f01107b55f63f_u",
+      "name": "赋值",
+      "description": "",
+      "attrs": {
+        "params": [
+          {
+            "assignmentUuid": "47a49d45b711489f9e8d79f8de51098e",
+            "field": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u"
+                  }
+                ]
+              }
+            },
+            "value": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_method_U_3fdbb16307b0486298fd473680fdc997_u}}({{u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u}},[{{u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u}}])",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_method_U_3fdbb16307b0486298fd473680fdc997_u",
+                  "elementList": [
+                    {
+                      "uuid": "4fd2c92679c64e4daa01f5efccb3c636"
+                    },
+                    {
+                      "uuid": "u_method_U_3fdbb16307b0486298fd473680fdc997_u"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "string_literal",
+                  "value": ""
+                },
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "string_literal",
+                  "value": ","
+                },
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "string_literal",
+                  "value": ""
+                }
+              ],
+              "elementObj": {
+                "u_method_U_3fdbb16307b0486298fd473680fdc997_u": [
+                  {
+                    "uuid": "4fd2c92679c64e4daa01f5efccb3c636"
+                  },
+                  {
+                    "uuid": "u_method_U_3fdbb16307b0486298fd473680fdc997_u"
+                  }
+                ],
+                "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u"
+                  }
+                ],
+                "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_a7cfd1e5033f4f068d99dd1456c5da31_u"
+                  }
+                ]
+              }
+            },
+            "elementUuid": "u_act_assignment_U_9fdbf3f263b44429a48f01107b55f63f_u"
+          }
+        ]
+      },
+      "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+      "serial": 2,
+      "kind": "act_assignment",
+      "children": [],
+      "identifier": "assignmentXdc"
+    },
+    {
+      "elementUuid": "u_act_assignment_U_b8e2ddb5c473410bb0978b447802e386_u",
+      "name": "赋值",
+      "description": "",
+      "attrs": {
+        "params": [
+          {
+            "assignmentUuid": "2f7320c5060447f286351f751d6ef2d9",
+            "field": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_output_param_U_b9e471ed0e0341698e2eb7cd5104c54d_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_output_param_U_b9e471ed0e0341698e2eb7cd5104c54d_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_output_param_U_b9e471ed0e0341698e2eb7cd5104c54d_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_output_param_U_b9e471ed0e0341698e2eb7cd5104c54d_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_output_param_U_b9e471ed0e0341698e2eb7cd5104c54d_u"
+                  }
+                ]
+              }
+            },
+            "value": {
+              "type": "simple_select",
+              "value": null,
+              "elementList": [],
+              "expression": "{{u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u}}",
+              "expressionList": [
+                {
+                  "elementType": "expression_variable",
+                  "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u",
+                  "elementList": [
+                    {
+                      "uuid": "current_scope"
+                    },
+                    {
+                      "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u"
+                    }
+                  ]
+                }
+              ],
+              "elementObj": {
+                "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u": [
+                  {
+                    "uuid": "current_scope"
+                  },
+                  {
+                    "uuid": "u_local_variable_U_bcea77a74c4b4682ab9e8bca57509a08_u"
+                  }
+                ]
+              }
+            },
+            "elementUuid": "u_act_assignment_U_b8e2ddb5c473410bb0978b447802e386_u"
+          }
+        ]
+      },
+      "parentElementUuid": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+      "serial": 3,
+      "kind": "act_assignment",
+      "children": [],
+      "identifier": "assignmentVty"
+    }
+  ]
+}

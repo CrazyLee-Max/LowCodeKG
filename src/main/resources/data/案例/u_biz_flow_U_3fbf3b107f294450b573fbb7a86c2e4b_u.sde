@@ -1,0 +1,373 @@
+{
+  "parentElementUuid": "u_biz_service_U_587ad27afd0a421f81ee845b1af5595f_u",
+  "kind": "biz_flow",
+  "name": "北池液位监控",
+  "identifier": "northPoolLiquidLevelMonitoring",
+  "elementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+  "inputs": {
+    "params": [
+      {
+        "name": "北池实际液位",
+        "kind": "input_param",
+        "dataType": {
+          "type": "integer",
+          "uuid": "ff4f7a94a5594facb8b367df19b878e6"
+        },
+        "parentElementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+        "elementUuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u",
+        "identifier": "actualLiquidLevelInBeichiZav",
+        "serial": 1
+      },
+      {
+        "name": "北池最高液位",
+        "kind": "input_param",
+        "dataType": {
+          "type": "integer",
+          "uuid": "490e910625d94517980a2e4ef4979320"
+        },
+        "parentElementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+        "elementUuid": "u_input_param_U_3dff41f0fe1b4eeeb7389269d10b3455_u",
+        "identifier": "maximumLiquidLevelInBeichiClk",
+        "serial": 2
+      },
+      {
+        "name": "北池最低液位",
+        "kind": "input_param",
+        "dataType": {
+          "type": "integer",
+          "uuid": "05ab5da7ae6346ff962e026d88681af1"
+        },
+        "parentElementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+        "elementUuid": "u_input_param_U_006559a9907342de9a63e9f633b5ea33_u",
+        "identifier": "inputParameterSsp",
+        "serial": 3
+      },
+      {
+        "name": "当前气温",
+        "kind": "input_param",
+        "dataType": {
+          "type": "integer",
+          "uuid": "99891a3667bd49db87b67252c14abfc8"
+        },
+        "parentElementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+        "elementUuid": "u_input_param_U_d72c9442f358474c993cbec1a6543ba5_u",
+        "identifier": "inputParameterDqf",
+        "serial": 4
+      }
+    ]
+  },
+  "children": [
+    {
+      "elementUuid": "u_act_judge_U_42a192c0475b4f2d923829bca1d6a52c_u",
+      "name": "判断",
+      "description": "",
+      "attrs": {},
+      "parentElementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+      "serial": 1,
+      "kind": "act_judge",
+      "children": [
+        {
+          "elementUuid": "u_act_condition_U_26a3a5828e924395abe328bb2ed06931_u",
+          "name": "北池液位高于最高液位",
+          "description": "",
+          "attrs": {
+            "conditions": [
+              {
+                "or": [
+                  {
+                    "left": {
+                      "type": "simple_select",
+                      "value": "",
+                      "expression": "{{u_input_param_U_fc540144948546efbe3156e3af431a75_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_fc540144948546efbe3156e3af431a75_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u"
+                          }
+                        ]
+                      }
+                    },
+                    "right": {
+                      "type": "simple_select",
+                      "value": "",
+                      "expression": "{{u_input_param_U_3dff41f0fe1b4eeeb7389269d10b3455_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_3dff41f0fe1b4eeeb7389269d10b3455_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_3dff41f0fe1b4eeeb7389269d10b3455_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_3dff41f0fe1b4eeeb7389269d10b3455_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_3dff41f0fe1b4eeeb7389269d10b3455_u"
+                          }
+                        ]
+                      }
+                    },
+                    "condition": {
+                      "type": "uuid_to_identifier",
+                      "elementList": [
+                        {
+                          "uuid": "u_76b4dcc834934e1499e7213d88cc03c6_u"
+                        }
+                      ]
+                    },
+                    "customUuid": "38200c73083549c68df0e4bbc17702e2"
+                  }
+                ]
+              }
+            ]
+          },
+          "parentElementUuid": "u_act_judge_U_42a192c0475b4f2d923829bca1d6a52c_u",
+          "serial": 1,
+          "kind": "act_condition",
+          "children": [
+            {
+              "elementUuid": "u_biz_call_biz_flow_U_eec127a2da2e40ba86416c8e9a630888_u",
+              "name": "调用业务流警报",
+              "description": "",
+              "attrs": {
+                "flow": {
+                  "type": "uuid_to_identifier",
+                  "value": "u_biz_flow_U_2389fc64b1dc4953b862ee6d5033c0b1_u",
+                  "elementList": []
+                },
+                "inputParams": []
+              },
+              "parentElementUuid": "u_act_condition_U_26a3a5828e924395abe328bb2ed06931_u",
+              "serial": 1,
+              "kind": "biz_call_biz_flow",
+              "children": [],
+              "identifier": "callBusinessFlowWqr"
+            }
+          ],
+          "identifier": "theLiquidLevelInTheNorthernPoolIsHigherThanCtj"
+        },
+        {
+          "elementUuid": "u_act_else_U_a5f4a8ad062d47fd914cb28081ee8d54_u",
+          "name": "条件判断else",
+          "description": "",
+          "attrs": null,
+          "parentElementUuid": "u_act_judge_U_42a192c0475b4f2d923829bca1d6a52c_u",
+          "serial": 2,
+          "kind": "act_else",
+          "children": [],
+          "identifier": "conditionalJudgmentElseUye"
+        }
+      ],
+      "identifier": "judgeUun"
+    },
+    {
+      "elementUuid": "u_act_judge_U_7d1669bc9d79477cbae2ddb4313fb040_u",
+      "name": "判断",
+      "description": "",
+      "attrs": {},
+      "parentElementUuid": "u_biz_flow_U_3fbf3b107f294450b573fbb7a86c2e4b_u",
+      "serial": 2,
+      "kind": "act_judge",
+      "children": [
+        {
+          "elementUuid": "u_act_condition_U_b8538cc7d6dd473b839f1117dacaab1d_u",
+          "name": "北池液位低于最低液位并且气温低于20",
+          "description": "",
+          "attrs": {
+            "conditions": [
+              {
+                "or": [
+                  {
+                    "left": {
+                      "type": "simple_select",
+                      "value": "",
+                      "expression": "{{u_input_param_U_fc540144948546efbe3156e3af431a75_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_fc540144948546efbe3156e3af431a75_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_fc540144948546efbe3156e3af431a75_u"
+                          }
+                        ]
+                      }
+                    },
+                    "right": {
+                      "type": "simple_select",
+                      "value": "",
+                      "expression": "{{u_input_param_U_006559a9907342de9a63e9f633b5ea33_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_006559a9907342de9a63e9f633b5ea33_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_006559a9907342de9a63e9f633b5ea33_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_006559a9907342de9a63e9f633b5ea33_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_006559a9907342de9a63e9f633b5ea33_u"
+                          }
+                        ]
+                      }
+                    },
+                    "condition": {
+                      "type": "uuid_to_identifier",
+                      "elementList": [
+                        {
+                          "uuid": "u_5a521aa0beb24c7588bebed98eadf2f1_u"
+                        }
+                      ]
+                    },
+                    "customUuid": "8a3368726f394d8485ffdc3ba901939e"
+                  },
+                  {
+                    "left": {
+                      "type": "simple_select",
+                      "value": "",
+                      "elementList": [],
+                      "expression": "{{u_input_param_U_d72c9442f358474c993cbec1a6543ba5_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_d72c9442f358474c993cbec1a6543ba5_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_d72c9442f358474c993cbec1a6543ba5_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_d72c9442f358474c993cbec1a6543ba5_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_d72c9442f358474c993cbec1a6543ba5_u"
+                          }
+                        ]
+                      }
+                    },
+                    "right": {
+                      "type": "simple_select",
+                      "value": "",
+                      "elementList": [],
+                      "expression": "20",
+                      "expressionList": [
+                        {
+                          "elementType": "string_literal",
+                          "value": "20"
+                        }
+                      ],
+                      "elementObj": {}
+                    },
+                    "condition": {
+                      "type": "uuid_to_identifier",
+                      "elementList": [
+                        {
+                          "uuid": "u_f45bb45a4e604c5c91c58e7123545844_u"
+                        }
+                      ]
+                    },
+                    "customUuid": "91bb0e126cd5431aa8ec6b4cf711d0f4"
+                  }
+                ]
+              }
+            ]
+          },
+          "parentElementUuid": "u_act_judge_U_7d1669bc9d79477cbae2ddb4313fb040_u",
+          "serial": 1,
+          "kind": "act_condition",
+          "children": [
+            {
+              "elementUuid": "u_biz_call_biz_flow_U_30520c4125694bba96e241e0247b6884_u",
+              "name": "调用业务流",
+              "description": "",
+              "attrs": {
+                "flow": {
+                  "type": "uuid_to_identifier",
+                  "value": "u_biz_flow_U_1645c0a3a77940bf9c3d2f78bef2cac8_u",
+                  "elementList": []
+                },
+                "inputParams": []
+              },
+              "parentElementUuid": "u_act_condition_U_b8538cc7d6dd473b839f1117dacaab1d_u",
+              "serial": 1,
+              "kind": "biz_call_biz_flow",
+              "children": [],
+              "identifier": "callBusinessFlowKyk"
+            }
+          ],
+          "identifier": "theLiquidLevelInTheNorthernPoolIsBelowTheMinimumLevelAndTheTemperatureIsBelow20DegreesCelsiusVtd"
+        },
+        {
+          "elementUuid": "u_act_else_U_4f8606e4db1943afb8463c378c89cc1a_u",
+          "name": "条件判断else",
+          "description": "",
+          "attrs": null,
+          "parentElementUuid": "u_act_judge_U_7d1669bc9d79477cbae2ddb4313fb040_u",
+          "serial": 2,
+          "kind": "act_else",
+          "children": [],
+          "identifier": "conditionalJudgmentElseHlu"
+        }
+      ],
+      "identifier": "judgeOww"
+    }
+  ]
+}

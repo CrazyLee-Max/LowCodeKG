@@ -1,0 +1,166 @@
+{
+  "parentElementUuid": "u_biz_service_U_587ad27afd0a421f81ee845b1af5595f_u",
+  "kind": "biz_flow",
+  "name": "自动化控制",
+  "identifier": "automatedControlCyt",
+  "elementUuid": "u_biz_flow_U_671c82dc2fa949f88f1542a78b5db551_u",
+  "inputs": {
+    "params": [
+      {
+        "name": "北池实际液位",
+        "kind": "input_param",
+        "dataType": {
+          "type": "integer",
+          "uuid": "ff4f7a94a5594facb8b367df19b878e6"
+        },
+        "parentElementUuid": "u_biz_flow_U_671c82dc2fa949f88f1542a78b5db551_u",
+        "elementUuid": "u_input_param_U_81711d5a7f2c42bd869690eb41be5183_u",
+        "identifier": "theActualSituationInBeichiIsStillUnknownFtr",
+        "serial": 1
+      },
+      {
+        "name": "北池最高液位",
+        "kind": "input_param",
+        "dataType": {
+          "type": "integer",
+          "uuid": "dc0ef4f405a64c3fb7dd1c35720508cf"
+        },
+        "parentElementUuid": "u_biz_flow_U_671c82dc2fa949f88f1542a78b5db551_u",
+        "elementUuid": "u_input_param_U_f08bf7f618784a8293fdac259cddb5e8_u",
+        "identifier": "beichiWgc",
+        "serial": 2
+      }
+    ]
+  },
+  "children": [
+    {
+      "elementUuid": "u_act_judge_U_6d83f90e40154f02943579895f8558b0_u",
+      "name": "判断",
+      "description": "",
+      "attrs": {},
+      "parentElementUuid": "u_biz_flow_U_671c82dc2fa949f88f1542a78b5db551_u",
+      "serial": 1,
+      "kind": "act_judge",
+      "children": [
+        {
+          "elementUuid": "u_act_condition_U_09eb5e7ebce946d1a81f5c39c52e29b1_u",
+          "name": "北池实际液位大于北池最高液位",
+          "description": "",
+          "attrs": {
+            "conditions": [
+              {
+                "or": [
+                  {
+                    "left": {
+                      "type": "simple_select",
+                      "value": "",
+                      "expression": "{{u_input_param_U_81711d5a7f2c42bd869690eb41be5183_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_81711d5a7f2c42bd869690eb41be5183_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_81711d5a7f2c42bd869690eb41be5183_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_81711d5a7f2c42bd869690eb41be5183_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_81711d5a7f2c42bd869690eb41be5183_u"
+                          }
+                        ]
+                      }
+                    },
+                    "right": {
+                      "type": "simple_select",
+                      "value": "",
+                      "expression": "{{u_input_param_U_f08bf7f618784a8293fdac259cddb5e8_u}}",
+                      "expressionList": [
+                        {
+                          "elementType": "expression_variable",
+                          "uuid": "u_input_param_U_f08bf7f618784a8293fdac259cddb5e8_u",
+                          "elementList": [
+                            {
+                              "uuid": "current_scope"
+                            },
+                            {
+                              "uuid": "u_input_param_U_f08bf7f618784a8293fdac259cddb5e8_u"
+                            }
+                          ]
+                        }
+                      ],
+                      "elementObj": {
+                        "u_input_param_U_f08bf7f618784a8293fdac259cddb5e8_u": [
+                          {
+                            "uuid": "current_scope"
+                          },
+                          {
+                            "uuid": "u_input_param_U_f08bf7f618784a8293fdac259cddb5e8_u"
+                          }
+                        ]
+                      }
+                    },
+                    "condition": {
+                      "type": "uuid_to_identifier",
+                      "elementList": [
+                        {
+                          "uuid": "u_3debe682e86040d0881263fbf7a1982a_u"
+                        }
+                      ]
+                    },
+                    "customUuid": "fceb1be0a1234106910600b06db9759a"
+                  }
+                ]
+              }
+            ]
+          },
+          "parentElementUuid": "u_act_judge_U_6d83f90e40154f02943579895f8558b0_u",
+          "serial": 1,
+          "kind": "act_condition",
+          "children": [
+            {
+              "elementUuid": "u_biz_call_biz_flow_U_046b229481174199b5cd44d5d48470c5_u",
+              "name": "调用业务流",
+              "description": "",
+              "attrs": {
+                "flow": {
+                  "type": "uuid_to_identifier",
+                  "value": "u_biz_flow_U_14a42715d5d240dd8d97aecb1f9c2318_u",
+                  "elementList": []
+                },
+                "inputParams": []
+              },
+              "parentElementUuid": "u_act_condition_U_09eb5e7ebce946d1a81f5c39c52e29b1_u",
+              "serial": 1,
+              "kind": "biz_call_biz_flow",
+              "children": [],
+              "identifier": "callBusinessFlowWmj"
+            }
+          ],
+          "identifier": "conditionIjm"
+        },
+        {
+          "elementUuid": "u_act_else_U_d303d28b47c14ab196f672e2e1080d76_u",
+          "name": "条件判断else",
+          "description": "",
+          "attrs": null,
+          "parentElementUuid": "u_act_judge_U_6d83f90e40154f02943579895f8558b0_u",
+          "serial": 2,
+          "kind": "act_else",
+          "children": [],
+          "identifier": "conditionalJudgmentElseVgv"
+        }
+      ],
+      "identifier": "judgeMoi"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+json
+{
+    "code": 200,
+    "message": "操作成功",
+    "data": {
+        "parentElementUuid": "",
+        "kind": "biz_flow",
+        "name": "阀门状态设置",
+        "identifier": "setValveStatus",
+        "elementUuid": "u_biz_flow_U_5fa13895f3d54e19b1552d764fb61d39_u",
+        "inputs": {
+            "params": [
+                {
+                    "name": "阀门列表",
+                    "kind": "input_param",
+                    "dataType": {
+                        "type": "array",
+                        "uuid": "a25aa56b2fe7432f8787755333fdc525"
+                    },
+                    "parentElementUuid": "u_biz_flow_U_5fa13895f3d54e19b1552d764fb61d39_u",
+                    "elementUuid": "u_input_param_U_e1091f06161749429ab9465da84e5433_u",
+                    "identifier": "param_10",
+                    "serial": 1
+                }
+            ]
+        },
+        "outputs": {},
+        "localVariables": {},
+        "children": [
+            {
+                "elementUuid": "u_act_for_each_U_326f63df3935444ca6e8f3bac088d180_u",
+                "name": "for循环",
+                "description": "",
+                "attrs": {
+                    "content": {
+                        "expression": "{{阀门列表}}",
+                        "elementObj": {
+                            "阀门列表": [
+                                {
+                                    "uuid": "current_scope"
+                                },
+                                {
+                                    "uuid": "阀门列表"
+                                }
+                            ]
+                        },
+                        "type": "simple_select",
+                        "elementList": []
+                    }
+                },
+                "parentElementUuid": "u_biz_flow_U_5fa13895f3d54e19b1552d764fb61d39_u",
+                "serial": 1,
+                "kind": "act_for_each",
+                "children": [
+                    {
+                        "elementUuid": "u_act_assignment_U_9c3d67ea21cf40b0981a4eedeca8af3b_u",
+                        "name": "赋值",
+                        "description": "",
+                        "attrs": {
+                            "params": [
+                                {
+                                    "assignmentUuid": "bc5db7fcb9cf413fae9d222e1a24ad0f",
+                                    "field": {
+                                        "expression": "{{阀门}}",
+                                        "type": "simple_select"
+                                    },
+                                    "value": {
+                                        "expression": "1",
+                                        "type": "simple_select"
+                                    }
+                                }
+                            ]
+                        },
+                        "parentElementUuid": "u_act_for_each_U_326f63df3935444ca6e8f3bac088d180_u",
+                        "serial": 1,
+                        "kind": "act_assignment",
+                        "children": [],
+                        "identifier": "assignment_11"
+                    }
+                ],
+                "identifier": "forEach_12"
+            }
+        ]
+    }
+}
