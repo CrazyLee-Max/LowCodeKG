@@ -9,6 +9,7 @@ public class LogicStructure {
     private String type;
     private String condition;
     private String arrayVariable;
+    private String iteratorName;
     private String targetVariable;
     private String assignmentExpression;
     private String targetFlowUuid;
@@ -38,6 +39,14 @@ public class LogicStructure {
     
     public void setArrayVariable(String arrayVariable) {
         this.arrayVariable = arrayVariable;
+    }
+    
+    public String getIteratorName() {
+        return iteratorName;
+    }
+    
+    public void setIteratorName(String iteratorName) {
+        this.iteratorName = iteratorName;
     }
     
     public String getTargetVariable() {

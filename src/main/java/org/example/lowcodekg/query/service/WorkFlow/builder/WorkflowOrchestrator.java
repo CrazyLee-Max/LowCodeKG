@@ -116,7 +116,7 @@ public class WorkflowOrchestrator {
     /**
      * 第三步：组装工作流
      */
-    public String assembleWorkflow(WorkflowDescription description, TaskAnalysisResult analysisResult) {
+    public Map<String, Object> assembleWorkflow(WorkflowDescription description, TaskAnalysisResult analysisResult) {
         Map<String, Object> workflow = new LinkedHashMap<>();
         
         // 设置工作流字段
@@ -174,7 +174,7 @@ public class WorkflowOrchestrator {
         // 后处理验证：检查并替换任何残留的中文字符
         workflow = validateAndFixChineseCharacters(workflow);
         
-        return JSON.toJSONString(workflow, true);
+        return workflow;
     }
     
     /**

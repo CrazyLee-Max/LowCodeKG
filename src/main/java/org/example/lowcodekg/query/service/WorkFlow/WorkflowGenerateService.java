@@ -6,6 +6,7 @@ import org.example.lowcodekg.query.service.WorkFlow.builder.WorkflowOrchestrator
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.example.lowcodekg.query.service.WorkFlow.model.*;
+import java.util.Map;
 @Service
 public class WorkflowGenerateService {
 
@@ -32,9 +33,9 @@ public class WorkflowGenerateService {
             }
 
             // ThirdStep：AssembleWorkflow
-            String workflowJson = workflowOrchestrator.assembleWorkflow(description, analysisResult);
+            Map<String, Object> workflow = workflowOrchestrator.assembleWorkflow(description, analysisResult);
             
-            return Result.build(workflowJson, ResultCodeEnum.SUCCESS);
+            return Result.build(workflow, ResultCodeEnum.SUCCESS);
         } catch (Exception e) {
             System.err.println("Error in generateWorkflow: " + e.getMessage());
             return Result.build(null, ResultCodeEnum.FAIL);
